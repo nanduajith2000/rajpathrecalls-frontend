@@ -6,8 +6,52 @@ import 'my_flutter_app_icons.dart';
 
 
 void main()=>runApp( const MaterialApp(
-  home:Home(),
+  home:Radio(),
 ));
+
+class Radio extends StatefulWidget {
+  const Radio({super.key});
+  @override
+  State<Radio> createState() => _RadioState();
+}
+
+class _RadioState extends State<Radio> {
+  int _selectedIndex=0;
+
+  static const List<Widget> _widgets=<Widget>[
+    Home(),
+    AboutUs()
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body:Center(
+      child: _widgets.elementAt(_selectedIndex)
+    ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.music_note),
+              label: 'Radio',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.short_text),
+              label: 'About Us',
+            ),
+          ],
+          backgroundColor: Colors.white70,
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.lightBlue,
+          onTap: _onItemTapped,
+        ),);
+  }
+}
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -36,8 +80,8 @@ class _HomeState extends State<Home> {
           child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children:  const [
-            Text('Rajpath',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold,color: Color(0xFFFA3232),fontFamily: 'OpenSans')),
-            Text('Recalls',style: TextStyle(fontSize: 24.0,color: Colors.white,fontFamily: 'OpenSans')),
+            Text('\nRajpath',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold,color: Color(0xFFFA3232),fontFamily: 'OpenSans')),
+            Text('\nRecalls',style: TextStyle(fontSize: 24.0,color: Colors.white,fontFamily: 'OpenSans')),
           ],
         )),
           Padding(padding: const EdgeInsets.fromLTRB(0, 32.0, 0, 32.0),
@@ -123,77 +167,10 @@ class _HomeState extends State<Home> {
               Text(' 1000+ Songs',style: TextStyle(fontSize: 14.0,color: Colors.white70,fontFamily: 'OpenSans')),
             ],
           )),
-        const Text('Pausing causes lagging',style: TextStyle(color: Colors.white38,fontSize: 10.0,fontFamily: 'OpenSans'),)
+        const Text('Pausing causes lagging\n\n',style: TextStyle(color: Colors.white38,fontSize: 10.0,fontFamily: 'OpenSans'),)
         ],
       ),
-         Padding(padding:const EdgeInsets.fromLTRB(0, 64, 0, 64),
-         child:Container(
-           alignment: Alignment.center,
-           width: 280.0,
-             height: 380.0,
-             decoration:  BoxDecoration(color: Colors.white10,borderRadius: BorderRadius.circular(15)),
-            child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
-                child:SingleChildScrollView(scrollDirection: Axis.vertical, child:Column(
-              children:  [
-                const Text('About Us\n',style: TextStyle(color:Colors.white70,fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'OpenSans')),
-                const Text('The Rajpath RECalls Web App is for radio broadcasting events happening in and related to NIT Calicut, which is conducted for and by the students. This is a broadcasting open-source web app, with multiple features including:\n',style: TextStyle(color:Colors.white70,fontSize: 13,fontFamily: 'OpenSans'),),
-              Row(
-                  children:const [
-                    Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //bullet text
-                    SizedBox(width: 10,), //space between bullet and text
-                    Expanded(
-                      child:Text("Real-time update of events and its schedule", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
-                    )
-                  ]
-              ),
-             Row(
-                 children:const [
-                   Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //bullet text
-                   SizedBox(width: 10,), //space between bullet and text
-                   Expanded(
-                     child:Text("Live comment section", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
-                   )
-                 ]
-             ),
-             Row(
-                 children:const [
-                   Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70),), //bullet text
-                   SizedBox(width: 10,), //space between bullet and text
-                   Expanded(
-                     child:Text("Play-in background set-up", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
-                   )
-                 ]
-             ),
-             Row(
-                 children:const [
-                   Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70),), //bullet text
-                   SizedBox(width: 10,), //space between bullet and text
-                   Expanded(
-                     child:Text("Accessible from the notification bar", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
-                   )
-                 ]
-             ),
-             Row(
-                 children:const [
-                   Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70),), //bullet text
-                   SizedBox(width: 10,), //space between bullet and text
-                   Expanded(
-                     child:Text("Ad-free", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
-                   )
-                 ]
-             ),
-             Row(
-                 children:const [
-                   Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70),), //bullet text
-                   SizedBox(width: 10,), //space between bullet and text
-                   Expanded(
-                     child:Text("Responsive to all devices", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
-                   )
-                 ]
-             ),
-              ],
-            ))),)),
+
           Container(
             alignment: Alignment.center,
             width:280,
@@ -259,3 +236,83 @@ class _HomeState extends State<Home> {
           )])),
     );
   }}
+
+class AboutUs extends StatelessWidget {
+  const AboutUs({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFF191931),
+        body:Center(
+          child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
+              child:SingleChildScrollView(scrollDirection: Axis.vertical, child:Column(
+                children:  [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:  const [
+                      Text('About',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold,color: Color(0xFFFA3232),fontFamily: 'OpenSans')),
+                      Text('Us',style: TextStyle(fontSize: 24.0,color: Colors.white,fontFamily: 'OpenSans')),
+                    ],
+                  ),
+                  const Text('\nThe Rajpath RECalls Web App is for radio broadcasting events happening in and related to NIT Calicut, which is conducted for and by the students. This is a broadcasting open-source web app, with multiple features including:\n',style: TextStyle(color:Colors.white70,fontSize: 13,fontFamily: 'OpenSans'),),
+                  Row(
+                      children:const [
+                        Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //bullet text
+                        SizedBox(width: 10,), //space between bullet and text
+                        Expanded(
+                          child:Text("Real-time update of events and its schedule", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
+                        )
+                      ]
+                  ),
+                  Row(
+                      children:const [
+                        Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //bullet text
+                        SizedBox(width: 10,), //space between bullet and text
+                        Expanded(
+                          child:Text("Live comment section", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
+                        )
+                      ]
+                  ),
+                  Row(
+                      children:const [
+                        Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70),), //bullet text
+                        SizedBox(width: 10,), //space between bullet and text
+                        Expanded(
+                          child:Text("Play-in background set-up", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
+                        )
+                      ]
+                  ),
+                  Row(
+                      children:const [
+                        Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70),), //bullet text
+                        SizedBox(width: 10,), //space between bullet and text
+                        Expanded(
+                          child:Text("Accessible from the notification bar", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
+                        )
+                      ]
+                  ),
+                  Row(
+                      children:const [
+                        Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70),), //bullet text
+                        SizedBox(width: 10,), //space between bullet and text
+                        Expanded(
+                          child:Text("Ad-free", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
+                        )
+                      ]
+                  ),
+                  Row(
+                      children:const [
+                        Text("\u2022", style: TextStyle(fontSize: 13,color:Colors.white70),), //bullet text
+                        SizedBox(width: 10,), //space between bullet and text
+                        Expanded(
+                          child:Text("Responsive to all devices", style: TextStyle(fontSize: 13,color:Colors.white70,fontFamily: 'OpenSans'),), //text
+                        )
+                      ]
+                  ),
+                ],
+              ))),));
+
+  }
+}
+
